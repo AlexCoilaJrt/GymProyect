@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/ms-asesoramiento/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ms-asistencia/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ms-auth/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ms-catalogogym/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ms-clase/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ms-clientegym/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ms-config-server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ms-gateway-server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ms-inscripcion/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ms-instructor/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ms-membresia/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ms-pagoclase/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ms-pagomembresia/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ms-pedido-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ms-registry-server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ms-trainer/src/main/java" charset="UTF-8" />
+  </component>
+</project>

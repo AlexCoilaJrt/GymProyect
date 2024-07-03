@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="ms-config-server" />
+        <module name="ms-clientegym" />
+        <module name="ms-registry-server" />
+        <module name="ms-asesoramiento" />
+        <module name="ms-gateway-server" />
+        <module name="ms-pagomembresia" />
+        <module name="auth-service" />
+        <module name="ms-trainer" />
+        <module name="ms-catalogogym" />
+        <module name="ms-pagoclase" />
+        <module name="ms-instructor" />
+        <module name="ms-asistencia" />
+        <module name="ms-pedido-service" />
+        <module name="ms-inscripcion" />
+        <module name="ms-membresia" />
+        <module name="ms-clase" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="auth-service" options="-parameters" />
+      <module name="ms-asesoramiento" options="-parameters" />
+      <module name="ms-asistencia" options="-parameters" />
+      <module name="ms-catalogogym" options="-parameters" />
+      <module name="ms-clase" options="-parameters" />
+      <module name="ms-clientegym" options="-parameters" />
+      <module name="ms-config-server" options="-parameters" />
+      <module name="ms-gateway-server" options="-parameters" />
+      <module name="ms-inscripcion" options="-parameters" />
+      <module name="ms-instructor" options="-parameters" />
+      <module name="ms-membresia" options="-parameters" />
+      <module name="ms-pagoclase" options="-parameters" />
+      <module name="ms-pagomembresia" options="-parameters" />
+      <module name="ms-pedido-service" options="-parameters" />
+      <module name="ms-registry-server" options="-parameters" />
+      <module name="ms-trainer" options="-parameters" />
+    </option>
+  </component>
+</project>
