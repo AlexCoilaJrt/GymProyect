@@ -2,8 +2,10 @@ export class Client {
 
     id?: number;
     nombre?: string;
-    apellidos?: string;
-    dni?: string;
+    apellido?:string;
+    genero?: string;
+    edad?: string;
     telefono?: string;
     correo?: string;
+    tipocliente?: string;
 }
