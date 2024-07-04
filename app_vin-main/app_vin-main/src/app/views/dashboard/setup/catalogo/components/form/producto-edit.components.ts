@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
@@ -41,8 +41,8 @@ import { Producto } from '../../models/producto';
 })
 export class ProductoEditComponent implements OnInit {
     productoForm: FormGroup;
-    title: string;
-    producto: Producto;
+    @Input() title: string;
+    @Input() producto: Producto;
 
     constructor(
         private fb: FormBuilder,

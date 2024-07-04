@@ -1,6 +1,6 @@
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConfirmDialogService } from '../../../../../shared/confirm-dialog/confirm-dialog.service';
@@ -26,14 +26,15 @@ import { ProductoNewComponent } from '../components/form/producto-new.component'
         <app-productos-list
             class="w-full"
             [productos]="productos"
-            (eventNew)="eventNewProducto()"
-            (eventEdit)="eventEditProducto($event)"
-            (eventDelete)="eventDeleteProducto($event)"
+            (eventNew)="eventNew()"
+            (eventEdit)="eventEdit($event)"
+            (eventDelete)="eventDelete($event)"
         ></app-productos-list>
     `,
 })
 export class ProductoContainerComponent implements OnInit {
     public productos: Producto[] = [];
+    public producto: Producto;
     public error: string = '';
 
     constructor(
@@ -48,16 +49,16 @@ export class ProductoContainerComponent implements OnInit {
 
     getProductos(): void {
         this._productoService.getAll$().subscribe(
-            (response) => {
+            (response: Producto[]) => {
                 this.productos = response;
             },
-            (error) => {
+            (error: any) => {
                 this.error = error;
             }
         );
     }
 
-    public eventNewProducto(): void {
+    public eventNew(): void {
         const productoForm = this._matDialog.open(ProductoNewComponent);
         productoForm.componentInstance.title = 'Nuevo Producto';
         productoForm.afterClosed().subscribe((result: any) => {
@@ -68,17 +69,17 @@ export class ProductoContainerComponent implements OnInit {
     }
 
     saveProducto(data: Producto): void {
-        this._productoService.add$(data).subscribe((response) => {
+        this._productoService.add$(data).subscribe((response: Producto) => {
             if (response) {
                 this.getProductos();
             }
         });
     }
 
-    public eventEditProducto(idProducto: number): void {
-        this._productoService.getById$(idProducto).subscribe((response) => {
+    public eventEdit(idProducto: number): void {
+        this._productoService.getById$(idProducto).subscribe((response: Producto) => {
             const productoForm = this._matDialog.open(ProductoEditComponent);
-            productoForm.componentInstance.title = 'Editar Producto';
+            productoForm.componentInstance.title = `Editar Producto`;
             productoForm.componentInstance.producto = response;
             productoForm.afterClosed().subscribe((result: any) => {
                 if (result) {
@@ -89,14 +90,14 @@ export class ProductoContainerComponent implements OnInit {
     }
 
     editProducto(idProducto: number, data: Producto): void {
-        this._productoService.update$(idProducto, data).subscribe((response) => {
+        this._productoService.update$(idProducto, data).subscribe((response: Producto) => {
             if (response) {
                 this.getProductos();
             }
         });
     }
 
-    public eventDeleteProducto(idProducto: number): void {
+    public eventDelete(idProducto: number): void {
         this._confirmDialogService.confirmDelete().then(() => {
             this._productoService.delete$(idProducto).subscribe(() => {
                 this.getProductos();
