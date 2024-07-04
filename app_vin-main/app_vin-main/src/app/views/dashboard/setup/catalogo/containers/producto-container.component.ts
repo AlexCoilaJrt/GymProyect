@@ -22,7 +22,7 @@ import { ProductoEditComponent } from '../components/form/producto-edit.componen
     ],
     template: `
         <app-productos-list
-            class="w-full mt-8"
+            class="w-full"
             [productos]="productos"
             (eventNew)="eventNewProducto()"
             (eventEdit)="eventEditProducto($event)"
@@ -76,7 +76,7 @@ export class ProductoContainerComponent implements OnInit {
     public eventEditProducto(idProducto: number): void {
         this._productoService.getById$(idProducto).subscribe((response) => {
             const productoForm = this._matDialog.open(ProductoEditComponent);
-            productoForm.componentInstance.title = `Editar Producto`;
+            productoForm.componentInstance.title = 'Editar Producto';
             productoForm.componentInstance.producto = response;
             productoForm.afterClosed().subscribe((result: any) => {
                 if (result) {

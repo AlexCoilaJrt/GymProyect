@@ -1,81 +1,68 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { abcForms } from '../../../../../../../environments/generals';
-import { MatIconModule } from '@angular/material/icon';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatDialogRef } from '@angular/material/dialog';
-import { Producto } from '../../models/producto'; // Asegúrate de que esta importación es correcta
+import { CommonModule } from '@angular/common';
+import { Producto } from '../models/producto';
 
 @Component({
     selector: 'app-producto-edit',
     standalone: true,
-    imports: [FormsModule, MatIconModule, MatButtonModule, ReactiveFormsModule, MatSlideToggleModule, MatFormFieldModule, MatInputModule],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatDialogModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatInputModule,
+    ],
     template: `
-        <div class="flex flex-col max-w-240 md:min-w-160 max-h-screen -m-6">
-            <!-- Header -->
-            <div class="flex flex-0 items-center justify-between h-16 pr-3 sm:pr-5 pl-6 sm:pl-8 bg-primary text-on-primary">
-                <div class="text-lg font-medium">{{ title }}</div>
-                <button mat-icon-button (click)="cancelForm()" [tabIndex]="-1">
-                    <mat-icon class="text-current" [svgIcon]="'heroicons_outline:x-mark'"></mat-icon>
-                </button>
-            </div>
-
-            <!-- Compose form -->
-            <form class="flex flex-col flex-auto p-6 sm:p-8 overflow-y-auto" [formGroup]="productoForm">
+        <h1 mat-dialog-title>{{ title }}</h1>
+        <div mat-dialog-content>
+            <form [formGroup]="productoForm">
                 <mat-form-field>
                     <mat-label>Nombre</mat-label>
-                    <input matInput formControlName="nombre" />
+                    <input matInput formControlName="nombre">
                 </mat-form-field>
                 <mat-form-field>
-                    <mat-label>Categoría</mat-label>
-                    <input matInput formControlName="categoriaId" />
+                    <mat-label>Categoría ID</mat-label>
+                    <input matInput formControlName="categoriaId">
                 </mat-form-field>
-                <!-- Actions -->
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between mt-4 sm:mt-6">
-                    <div class="flex space-x-2 items-center mt-4 sm:mt-0 ml-auto">
-                        <button mat-stroked-button color="warn" (click)="cancelForm()">Cancelar</button>
-                        <button mat-stroked-button color="primary" (click)="saveForm()">Guardar</button>
-                    </div>
-                </div>
             </form>
+        </div>
+        <div mat-dialog-actions>
+            <button mat-button (click)="onCancel()">Cancelar</button>
+            <button mat-button (click)="onSave()">Guardar</button>
         </div>
     `
 })
 export class ProductoEditComponent implements OnInit {
-    productoForm = new FormGroup({
-        nombre: new FormControl('', [Validators.required]),
-        categoriaId: new FormControl('', [Validators.required])
-    });
-    @Input() title: string = '';
-    @Input() producto: Producto; // Aquí aseguramos que 'Producto' es usado como un tipo
-    abcForms: any;
+    productoForm: FormGroup;
+    title: string;
+    producto: Producto;
 
     constructor(
-        private formBuilder: FormBuilder,
-        private dialogRef: MatDialogRef<ProductoEditComponent>,
-    ) {}
+        private fb: FormBuilder,
+        private dialogRef: MatDialogRef<ProductoEditComponent>
+    ) { }
 
-    ngOnInit() {
-        this.abcForms = abcForms;
-
-        if (this.producto) {
-            this.productoForm.patchValue({
-                nombre: this.producto.nombre,
-                categoriaId: this.producto.categoriaId.toString() // Asegúrate de convertir a string si es necesario
-            });
-        }
+    ngOnInit(): void {
+        this.productoForm = this.fb.group({
+            nombre: [this.producto?.nombre || '', Validators.required],
+            categoriaId: [this.producto?.categoriaId || '', Validators.required]
+        });
     }
 
-    public saveForm(): void {
+    onSave(): void {
         if (this.productoForm.valid) {
             this.dialogRef.close(this.productoForm.value);
         }
     }
 
-    public cancelForm(): void {
+    onCancel(): void {
         this.dialogRef.close(null);
     }
 }
