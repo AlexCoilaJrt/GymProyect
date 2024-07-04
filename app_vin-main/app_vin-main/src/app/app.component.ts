@@ -12,6 +12,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class AppComponent implements OnInit{
     clienteForm: FormGroup;
+    instructorForm: FormGroup;
+
     /**
      * Constructor
      */
@@ -30,6 +32,12 @@ export class AppComponent implements OnInit{
           correo:['',Validators.required],
           tipocliente:['',Validators.required],
      })
+        this.instructorForm = this.fb.group({
+            nombre:['',Validators.required],
+            especialidad:['',Validators.required],
+            edad:['',Validators.required],
+            telefono:['',Validators.required],
+        })
     }
 
 

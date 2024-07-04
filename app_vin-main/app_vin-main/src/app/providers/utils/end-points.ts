@@ -25,7 +25,9 @@ export const END_POINTS = {
     users: 'auth/users',
     access:'acceso',
     access_parent:'acceso-padres',
+      instructor: 'instructor',  // Asegúrate de que este endpoint está correctamente definido en tu API
   },
+
   event: {
     event: 'evento',
   },

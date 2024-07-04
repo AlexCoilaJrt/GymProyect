@@ -69,6 +69,8 @@ spring:
           uri: lb://ms-instructor-service
           predicates:
             - Path=/instructor/**
+          filters:
+            - AuthFilter
         - id: ms-clase-service
           uri: lb://ms-clase-service
           predicates:
