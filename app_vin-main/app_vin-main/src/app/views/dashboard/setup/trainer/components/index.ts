@@ -1,1 +1,1 @@
-export * from './lists/roles-list.component';
+export * from './lists/trainer-list.component';

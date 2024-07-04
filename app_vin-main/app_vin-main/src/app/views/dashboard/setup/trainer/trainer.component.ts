@@ -2,8 +2,9 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { abcForms } from '../../../../../environments/generals';
 import { Component, OnInit } from '@angular/core';
+
 @Component({
-    selector: 'app-setup',
+    selector: 'app-trainer',
     standalone: true,
     imports: [CommonModule, RouterOutlet],
     template: `
@@ -16,14 +17,14 @@ import { Component, OnInit } from '@angular/core';
             </div>
         </div>
     `,
-    // styleUrl: './setup.component.scss'
+    // styleUrl: './trainer.component.scss'
 })
-export class ClientComponent implements OnInit {
+export class TrainerComponent implements OnInit {
     public title: string = '';
     abcForms: any;
     constructor() {}
     ngOnInit() {
-        this.title = 'Cliente';
+        this.title = 'Trainer';
         this.abcForms = abcForms;
     }
 }

@@ -44,20 +44,8 @@ import { MatInputModule } from '@angular/material/input';
                     <input matInput formControlName="nombre" />
                 </mat-form-field>
                 <mat-form-field>
-                    <mat-label>Apellido</mat-label>
-                    <input matInput formControlName="apellido" />
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label>Especialidad</mat-label>
-                    <input matInput formControlName="especialidad" />
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label>Email</mat-label>
-                    <input matInput formControlName="email" />
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label>Teléfono</mat-label>
-                    <input matInput formControlName="telefono" />
+                    <mat-label>Categoria ID</mat-label>
+                    <input matInput formControlName="categoriaId" />
                 </mat-form-field>
                 <!-- Actions -->
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between mt-4 sm:mt-6">
@@ -70,26 +58,23 @@ import { MatInputModule } from '@angular/material/input';
         </div>
     `,
 })
-export class TrainerNewComponent implements OnInit {
+export class CatalogoNewComponent implements OnInit {
     @Input() title: string = '';
     abcForms: any;
-    trainerForm = new FormGroup({
+    catalogoForm = new FormGroup({
         nombre: new FormControl('', [Validators.required]),
-        apellido: new FormControl('', [Validators.required]),
-        especialidad: new FormControl('', [Validators.required]),
-        email: new FormControl('', [Validators.required, Validators.email]),
-        telefono: new FormControl('', [Validators.required]),
+        categoriaId: new FormControl('', [Validators.required]),
     });
 
-    constructor(private dialogRef: MatDialogRef<TrainerNewComponent>) {}
+    constructor(private dialogRef: MatDialogRef<CatalogoNewComponent>) {}
 
     ngOnInit() {
         this.abcForms = abcForms;
     }
 
     public saveForm(): void {
-        if (this.trainerForm.valid) {
-            this.dialogRef.close(this.trainerForm.value);
+        if (this.catalogoForm.valid) {
+            this.dialogRef.close(this.catalogoForm.value);
         }
     }
 
