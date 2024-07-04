@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { TrainerContainerComponent } from './containers/trainer-container.component';
-import { TrainerComponent } from './trainer.component';
 
 export default [
     {
@@ -9,7 +8,7 @@ export default [
         children: [
             {
                 path: '',
-                component: TrainerComponent,
+                component: TrainerContainerComponent,
                 data: {
                     title: 'Trainers'
                 }

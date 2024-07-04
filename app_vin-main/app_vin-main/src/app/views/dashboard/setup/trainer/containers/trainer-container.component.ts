@@ -11,7 +11,7 @@ import { TrainerListComponent } from '../components/lists/trainer-list.component
 import { TrainerService } from '../../../../../providers/services/setup/trainer.service';
 
 @Component({
-    selector: 'app-trainer-container',
+    selector: 'app-trainers-container',
     standalone: true,
     imports: [
         CommonModule,
@@ -23,19 +23,19 @@ import { TrainerService } from '../../../../../providers/services/setup/trainer.
         ReactiveFormsModule,
     ],
     template: `
-        <app-trainer-list
+        <app-trainers-list
             class="w-full"
             [trainers]="trainers"
             (eventNew)="eventNew()"
             (eventEdit)="eventEdit($event)"
             (eventDelete)="eventDelete($event)"
-        ></app-trainer-list>
+        ></app-trainers-list>
     `,
 })
 export class TrainerContainerComponent implements OnInit {
     public error: string = '';
     public trainers: Trainer[] = [];
-    public trainer = new Trainer();
+    public trainer: Trainer = {} as Trainer;
 
     constructor(
         private _trainerService: TrainerService,
@@ -60,7 +60,7 @@ export class TrainerContainerComponent implements OnInit {
 
     public eventNew(): void {
         const trainerForm = this._matDialog.open(TrainerNewComponent);
-        trainerForm.componentInstance.title = 'Nuevo Instructor';
+        trainerForm.componentInstance.title = 'Nuevo Trainer';
         trainerForm.afterClosed().subscribe((result: any) => {
             if (result) {
                 this.saveTrainer(result);
@@ -76,28 +76,21 @@ export class TrainerContainerComponent implements OnInit {
         });
     }
 
-    eventEdit(idTrainer: number): void {
-        const listById = this._trainerService.getById$(idTrainer).subscribe((response) => {
-            this.trainer = response;
-            this.openModalEdit(this.trainer);
-            listById.unsubscribe();
+    public eventEdit(idTrainer: number): void {
+        this._trainerService.getById$(idTrainer).subscribe((response) => {
+            this.trainer = response || {} as Trainer;
+            const trainerForm = this._matDialog.open(TrainerEditComponent);
+            trainerForm.componentInstance.title = `Editar ${this.trainer.nombre}`;
+            trainerForm.componentInstance.trainer = this.trainer;
+            trainerForm.afterClosed().subscribe((result: any) => {
+                if (result) {
+                    this.editTrainer(this.trainer.id, result);
+                }
+            });
         });
     }
 
-    openModalEdit(data: Trainer) {
-        if (data) {
-            const trainerForm = this._matDialog.open(TrainerEditComponent);
-            trainerForm.componentInstance.title = `Editar ${data.nombre || data.id}`;
-            trainerForm.componentInstance.trainer = data;
-            trainerForm.afterClosed().subscribe((result: any) => {
-                if (result) {
-                    this.editTrainer(data.id, result);
-                }
-            });
-        }
-    }
-
-    editTrainer(idTrainer: number, data: Trainer) {
+    editTrainer(idTrainer: number, data: Trainer): void {
         this._trainerService.update$(idTrainer, data).subscribe((response) => {
             if (response) {
                 this.getTrainers();
@@ -106,10 +99,14 @@ export class TrainerContainerComponent implements OnInit {
     }
 
     public eventDelete(idTrainer: number) {
-        this._confirmDialogService.confirmDelete({}).then(() => {
-            this._trainerService.delete$(idTrainer).subscribe(() => {
-                this.getTrainers();
+        this._confirmDialogService.confirmDelete({
+            // title: 'Confirmación Personalizada',
+            // message: ¿Quieres proceder con esta acción ${}?,
+        }).then(() => {
+            this._trainerService.delete$(idTrainer).subscribe((response) => {
+                this.trainers = response;
             });
+            this.getTrainers();
         }).catch(() => {});
     }
 }
