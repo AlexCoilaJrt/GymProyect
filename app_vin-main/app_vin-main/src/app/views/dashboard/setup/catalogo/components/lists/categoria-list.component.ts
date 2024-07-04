@@ -1,11 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { Categoria } from '../../models/categoria';
 
 @Component({
-    selector: 'app-categorias-list',
+    selector: 'app-categoria-list',
     imports: [CommonModule, MatButtonModule, MatIconModule],
     standalone: true,
     template: `
@@ -26,7 +26,6 @@ import { Categoria } from '../../models/categoria';
                         <tr>
                             <th class="w-1/6 text-center px-5 border-r">#</th>
                             <th class="w-2/6 text-center px-5 border-r">Nombre</th>
-                            <th class="w-1/6 text-center border-r">Estado</th>
                             <th class="w-2/6 text-center">Acciones</th>
                         </tr>
                         </thead>
@@ -34,11 +33,6 @@ import { Categoria } from '../../models/categoria';
                         <tr *ngFor="let categoria of categorias; let i = index" class="hover:bg-gray-100">
                             <td class="w-1/6 p-2 text-center border-b">{{ i + 1 }}</td>
                             <td class="w-2/6 p-2 text-start border-b text-sm">{{ categoria.nombre }}</td>
-                            <td class="w-1/6 p-2 text-center border-b text-sm">
-                                <div class="relative grid items-center font-sans font-bold uppercase whitespace-nowrap select-none bg-green-500/20 text-green-600 py-1 px-2 text-xs rounded-md">
-                                    <span>ACTIVO</span>
-                                </div>
-                            </td>
                             <td class="w-2/6 p-2 text-center border-b text-sm">
                                 <div class="flex justify-center space-x-3">
                                     <mat-icon class="text-amber-400 hover:text-amber-500 cursor-pointer" (click)="goEdit(categoria.id)">edit</mat-icon>
@@ -53,23 +47,21 @@ import { Categoria } from '../../models/categoria';
         </div>
     `,
 })
-export class CategoriaListComponent implements OnInit {
+export class CategoriaListComponent {
     @Input() categorias: Categoria[] = [];
     @Output() eventNew = new EventEmitter<void>();
     @Output() eventEdit = new EventEmitter<number>();
     @Output() eventDelete = new EventEmitter<number>();
 
-    ngOnInit() {}
-
-    public goNew(): void {
+    goNew(): void {
         this.eventNew.emit();
     }
 
-    public goEdit(id: number): void {
+    goEdit(id: number): void {
         this.eventEdit.emit(id);
     }
 
-    public goDelete(id: number): void {
+    goDelete(id: number): void {
         this.eventDelete.emit(id);
     }
 }

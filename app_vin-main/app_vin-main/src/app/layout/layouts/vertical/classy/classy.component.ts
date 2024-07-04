@@ -164,8 +164,8 @@ export class ClassyLayoutComponent implements OnInit, OnDestroy {
                         title: 'Setup Catalogo',
                         type: 'basic',
                         icon: 'heroicons_outline:chart-pie',
-                        link: '/homeScreen/setup/instructor',
-                    },
+                        link: '/homeScreen/setup/catalogo',
+                    }
                 ],
             },
 
