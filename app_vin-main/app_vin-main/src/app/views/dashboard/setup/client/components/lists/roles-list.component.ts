@@ -12,9 +12,9 @@ import { Client } from '../../models/client';
         <div class="w-full mx-auto p-6 bg-white rounded overflow-hidden shadow-lg">
             <div class="flex justify-between items-center mb-2 bg-slate-300 text-black p-4 rounded">
                 <h2 class="text-2xl font-bold">
-                    Lista de <span class="text-primary">Clientes</span>
+                    Lista de <span class="text-gray">Clientes</span>
                 </h2>
-                <button mat-flat-button color="primary" (click)="goNew()">
+                <button mat-flat-button class="btn-gradient-plomo" (click)="goNew()">
                     <mat-icon>add</mat-icon>
                     <span class="ml-2">Nuevo Cliente</span>
                 </button>
@@ -22,7 +22,7 @@ import { Client } from '../../models/client';
             <div class="bg-white rounded overflow-hidden shadow-lg">
                 <div class="p-2 overflow-scroll px-0">
                     <table class="w-full table-fixed">
-                        <thead class="bg-primary-600 text-white">
+                        <thead class="bg-gray-600 text-white">
                         <tr>
                             <th class="w-1/6 text-center px-5 border-r">#</th>
                             <th class="w-2/6 text-center px-5 border-r">Nombre</th>

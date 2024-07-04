@@ -3,7 +3,8 @@
 
 <!-- Navigation -->
 <fuse-vertical-navigation
-    class="dark bg-gray-900 print:hidden"
+    class="dark bg-red-600 print:hidden"
+    style="background: linear-gradient(135deg, #6f6969, #424040); color: #FFFFFF;"
     [mode]="isScreenSmall ? 'over' : 'side'"
     [name]="'mainNavigation'"
     [navigation]="navigation"
@@ -12,18 +13,14 @@
     <ng-container fuseVerticalNavigationContentHeader>
         <div class="flex items-center w-full p-4 pl-6">
             <!-- Logo -->
-            <div class="flex items-center justify-center">
-                <img
-                    class="w-8"
-                    src="assets/images/logo/logo.svg">
-            </div>
+
             <!-- Components -->
             <div class="flex items-center ml-auto">
 <!--                <notifications></notifications>-->
                 <user [showAvatar]="false"></user>
             </div>
             <!-- Profile dropdown -->
-           
+
         </div>
         <!-- User -->
         <div class="flex flex-col items-center w-full p-4">
@@ -50,11 +47,7 @@
     </ng-container>
     <!-- Navigation footer hook -->
     <ng-container fuseVerticalNavigationContentFooter>
-        <div class="flex flex-0 items-center justify-center h-16 pr-6 pl-2 mt-2 mb-4 opacity-12">
-            <img
-                class="max-w-36"
-                src="assets/images/logo/logo-text-on-dark.svg">
-        </div>
+
     </ng-container>
 </fuse-vertical-navigation>
 
@@ -71,7 +64,7 @@
         </button>
         <!-- Components -->
         <div class="flex items-center pl-2 ml-auto space-x-0.5 sm:space-x-2">
-           
+
             <fuse-fullscreen class="hidden md:block"></fuse-fullscreen>
             <search [appearance]="'bar'"></search>
             <shortcuts></shortcuts>

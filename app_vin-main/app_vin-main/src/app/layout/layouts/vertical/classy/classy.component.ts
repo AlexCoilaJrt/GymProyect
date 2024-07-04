@@ -175,9 +175,9 @@ export class ClassyLayoutComponent implements OnInit, OnDestroy {
         ];
         this.user = {
             id: 'cfaad35d-07a3-4447-a6c3-d8c3d54fd5df',
-            name: 'Brian Hughes',
-            email: 'hughes.brian@company.com',
-            avatar: 'assets/images/avatars/brian-hughes.jpg',
+            name: 'CRIS Ch',
+            email: 'chuqui.chura@company.com@company.com',
+            avatar: 'assets/images/avatars/sin titulo-1.jpg',
             status: 'online',
         };
 

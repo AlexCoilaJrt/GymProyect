@@ -22,7 +22,7 @@ import { Categoria } from '../../models/categoria';
             <div class="bg-white rounded overflow-hidden shadow-lg">
                 <div class="p-2 overflow-scroll px-0">
                     <table class="w-full table-fixed">
-                        <thead class="bg-primary-600 text-white">
+                        <thead class="bg-gray-600 text-white">
                         <tr>
                             <th class="w-1/6 text-center px-5 border-r">#</th>
                             <th class="w-2/6 text-center px-5 border-r">Nombre</th>

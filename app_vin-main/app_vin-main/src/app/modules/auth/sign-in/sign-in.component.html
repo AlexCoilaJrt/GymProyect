@@ -7,24 +7,24 @@
         <div class="w-full max-w-80 sm:w-80 mx-auto sm:mx-0">
             <!-- Logo -->
             <div class="w-12">
-                <img src="assets/images/logo/logo.svg" />
+                <img
+                src="https://st4.depositphotos.com/1030956/23386/v/450/depositphotos_233869588-stock-illustration-logotype-heavyweight-gym-fitness-sport.jpg"
+                alt="Descripción de la imagen"
+                class="absolute inset-0 w-120 h-120  object-cover"
+                />
+
             </div>
 
             <!-- Title -->
-            <div
-                class="mt-8 text-4xl font-extrabold tracking-tight leading-tight"
-            >
-            Inicia sesión
+            <div class="mt-8 text-4xl font-extrabold tracking-tight leading-tight mx-auto text-center">
+                Inicia sesión
             </div>
-            <div class="flex items-baseline mt-0.5 font-medium">
-                <div>¿No tienes una cuenta?
-                </div>
-                <a
-                    class="ml-1 text-primary-500 hover:underline"
-                    [routerLink]="['/sign-up']"
-                    >Regístrate
-                </a>
+
+            <div class="flex items-center justify-center mt-0.5 font-medium">
+                <div>¿No tienes una cuenta?</div>
+                <a class="ml-1 text-primary-500 hover:underline" [routerLink]="['/sign-up']">Regístrate</a>
             </div>
+
 
             <fuse-alert
                 class="mt-8"
@@ -51,7 +51,7 @@
                     <mat-error
                         *ngIf="signInForm.get('userName').hasError('userName')"
                     >
-                        Ingresa Ususrio
+                        Ingresa Usuario
                     </mat-error>
                 </mat-form-field>
 
@@ -68,11 +68,7 @@
                     <button
                         mat-icon-button
                         type="button"
-                        (click)="
-                            passwordField.type === 'password'
-                                ? (passwordField.type = 'text')
-                                : (passwordField.type = 'password')
-                        "
+                        (click)="passwordField.type === 'password' ? (passwordField.type = 'text') : (passwordField.type = 'password')"
                         matSuffix
                     >
                         <mat-icon
@@ -90,20 +86,19 @@
                 </mat-form-field>
 
                 <!-- Actions -->
-                <div
-                    class="inline-flex items-center justify-between w-full mt-1.5"
-                >
+                <div class="inline-flex items-center justify-between w-full mt-1.5">
                     <mat-checkbox
                         class="-ml-2"
                         [color]="'primary'"
                         [formControlName]="'rememberMe'"
                     >
-                        Recuerdame
+                        Recuérdame
                     </mat-checkbox>
                     <a
                         class="text-md font-medium text-primary-500 hover:underline"
                         [routerLink]="['/forgot-password']"
-                        >¿Olvidaste la contraseña?
+                    >
+                        ¿Olvidaste la contraseña?
                     </a>
                 </div>
 
@@ -111,92 +106,83 @@
                 <button
                     class="fuse-mat-button-large w-full mt-6"
                     mat-flat-button
-                    [color]="'primary'"
+                    [color]="'info'"
                     [disabled]="signInForm.disabled"
                     (click)="signIn()"
                 >
-                    <span *ngIf="!signInForm.disabled"> Inicia Sesion </span>
+                    <span *ngIf="!signInForm.disabled"> Inicia Sesión </span>
                     <mat-progress-spinner
                         *ngIf="signInForm.disabled"
                         [diameter]="24"
                         [mode]="'indeterminate'"
                     ></mat-progress-spinner>
                 </button>
-
-
-
-
             </form>
         </div>
     </div>
     <div
         class="relative hidden md:flex flex-auto items-center justify-center w-1/2 h-full p-16 lg:px-28 overflow-hidden bg-gray-800 dark:border-l"
     >
-        <!-- Background - @formatter:off -->
-        <!-- Rings -->
-        <svg
-            class="absolute inset-0 pointer-events-none"
-            viewBox="0 0 960 540"
-            width="100%"
-            height="100%"
-            preserveAspectRatio="xMidYMax slice"
-            xmlns="http://www.w3.org/2000/svg"
-        >
-            <g
-                class="text-gray-700 opacity-25"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="100"
-            >
-                <circle r="234" cx="196" cy="23"></circle>
-                <circle r="234" cx="790" cy="491"></circle>
-            </g>
-        </svg>
-        <!-- Dots -->
-        <svg
-            class="absolute -top-16 -right-16 text-gray-700"
-            viewBox="0 0 220 192"
-            width="220"
-            height="192"
+        <img
+            src="https://i.pinimg.com/564x/e3/af/a5/e3afa58e76f9b135a4390f8d9a8d9cd3.jpg"
+            alt="Descripción de la imagen"
+            class="absolute inset-0 w-full h-full object-cover"
+        />
+    </div>
+
+
+
+    <!-- Background - @formatter:off -->
+    <!-- Rings -->
+    <svg
+        class="absolute inset-0 pointer-events-none"
+        viewBox="0 0 960 540"
+        width="100%"
+        height="100%"
+        preserveAspectRatio="xMidYMax slice"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <g
+            class="text-gray-700 opacity-25"
             fill="none"
+            stroke="currentColor"
+            stroke-width="100"
         >
-            <defs>
-                <pattern
-                    id="837c3e70-6c3a-44e6-8854-cc48c737b659"
+            <circle r="234" cx="196" cy="23"></circle>
+            <circle r="234" cx="790" cy="491"></circle>
+        </g>
+    </svg>
+    <!-- Dots -->
+    <svg
+        class="absolute -top-16 -right-16 text-gray-700"
+        viewBox="0 0 220 192"
+        width="220"
+        height="192"
+        fill="none"
+    >
+        <defs>
+            <pattern
+                id="837c3e70-6c3a-44e6-8854-cc48c737b659"
+                x="0"
+                y="0"
+                width="20"
+                height="20"
+                patternUnits="userSpaceOnUse"
+            >
+                <rect
                     x="0"
                     y="0"
-                    width="20"
-                    height="20"
-                    patternUnits="userSpaceOnUse"
-                >
-                    <rect
-                        x="0"
-                        y="0"
-                        width="4"
-                        height="4"
-                        fill="currentColor"
-                    ></rect>
-                </pattern>
-            </defs>
-            <rect
-                width="220"
-                height="192"
-                fill="url(#837c3e70-6c3a-44e6-8854-cc48c737b659)"
-            ></rect>
-        </svg>
-        <!-- @formatter:on -->
-        <!-- Content -->
-        <!-- <div class="z-10 relative w-full max-w-2xl">
-            <div class="text-7xl font-bold leading-none text-gray-100">
-                <div>Welcome to</div>
-                <div>our community</div>
-            </div>
-            <div class="mt-6 text-lg tracking-tight leading-6 text-gray-400">
-                Fuse helps developers to build organized and well coded
-                dashboards full of beautiful and rich modules. Join us and start
-                building your application today.
-            </div>
-
-        </div> -->
-    </div>
+                    width="4"
+                    height="4"
+                    fill="currentColor"
+                ></rect>
+            </pattern>
+        </defs>
+        <rect
+            width="220"
+            height="192"
+            fill="url(#837c3e70-6c3a-44e6-8854-cc48c737b659)"
+        ></rect>
+    </svg>
+    <!-- @formatter:on -->
 </div>

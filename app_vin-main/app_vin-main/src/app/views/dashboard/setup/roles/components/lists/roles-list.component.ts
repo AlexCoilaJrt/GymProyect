@@ -22,10 +22,10 @@ import { MatDialog } from '@angular/material/dialog';
                 class="flex justify-between items-center mb-2 bg-slate-300 text-black p-4 rounded"
             >
                 <h2 class="text-2xl font-bold">
-                    Lista de <span class="text-primary">Roles</span>
+                    Lista de <span class="text-gray">Roles</span>
                 </h2>
-                <button mat-flat-button [color]="'primary'" (click)="goNew()">
-                    <mat-icon [svgIcon]="'heroicons_outline:plus'"></mat-icon>
+                <button mat-flat-button class="btn-gradient-plomo" (click)="goNew()">
+                <mat-icon [svgIcon]="'heroicons_outline:plus'"></mat-icon>
                     <span class="ml-2">Nuevo Rol</span>
                 </button>
             </div>
@@ -74,7 +74,7 @@ import { MatDialog } from '@angular/material/dialog';
             <div class="bg-white rounded overflow-hidden shadow-lg">
                 <div class="p-2 overflow-scroll px-0">
                     <table class="w-full table-fixed">
-                        <thead class="bg-primary-600 text-white">
+                        <thead class="bg-gray-600 text-white">
                             <tr>
                                 <th
                                     class="w-1/6 table-head text-center px-5 border-r"
@@ -135,9 +135,9 @@ import { MatDialog } from '@angular/material/dialog';
                                             (click)="goDelete(r.id)"
                                             >delete_sweep</mat-icon
                                         >
-                                    
 
-                                        
+
+
                                         <!--                                        <mat-icon-->
                                         <!--                                            class="text-sky-400 hover:text-sky-600 cursor-pointer"-->
                                         <!--                                            (click)="openComposeDialog()"-->
@@ -161,13 +161,13 @@ import { MatDialog } from '@angular/material/dialog';
                         </span>
                         <div class="inline-flex mt-2 xs:mt-0">
                             <button
-                                class="text-sm text-primary-50 transition duration-150 hover:bg-primary-500 bg-primary-600 font-semibold py-2 px-4 rounded-l"
+                                class="text-sm text-primary-50 transition duration-150 hover:bg-gray-500 bg-gray-600 font-semibold py-2 px-4 rounded-l"
                             >
                                 Prev
                             </button>
                             &nbsp; &nbsp;
                             <button
-                                class="text-sm text-primary-50 transition duration-150 hover:bg-primary-500 bg-primary-600 font-semibold py-2 px-4 rounded-r"
+                                class="text-sm text-gray-50 transition duration-150 hover:bg-gray-500 bg-gray-600 font-semibold py-2 px-4 rounded-r"
                             >
                                 Next
                             </button>
