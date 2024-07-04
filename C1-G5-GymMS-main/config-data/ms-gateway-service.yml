@@ -59,6 +59,8 @@ spring:
           uri: lb://ms-trainer-service
           predicates:
             - Path=/trainer/**
+          filters:
+            - AuthFilter
         - id: ms-pagomembresia-service
           uri: lb://ms-pagomembresia-service
           predicates:

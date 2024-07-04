@@ -7,11 +7,11 @@ import { TrainerNewComponent } from '../components/form/trainer-new.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TrainerEditComponent } from '../components/form/trainer-edit.component';
 import { ConfirmDialogService } from '../../../../../shared/confirm-dialog/confirm-dialog.service';
-import { TrainerListComponent } from '../components/lists/trainer-list.component';
-import { TrainerService } from '../../../../../providers/services/setup/trainer.service';
+import { TrainerListComponent } from '../components/lists/trainer-list.component';  // Ensure correct path
+import { TrainerService } from '../../../../../providers/services/setup/trainer.service';  // Ensure correct path
 
 @Component({
-    selector: 'app-trainers-container',
+    selector: 'app-trainer-container',
     standalone: true,
     imports: [
         CommonModule,
@@ -23,13 +23,13 @@ import { TrainerService } from '../../../../../providers/services/setup/trainer.
         ReactiveFormsModule,
     ],
     template: `
-        <app-trainers-list
+        <app-trainer-list
             class="w-full"
             [trainers]="trainers"
             (eventNew)="eventNew()"
             (eventEdit)="eventEdit($event)"
             (eventDelete)="eventDelete($event)"
-        ></app-trainers-list>
+        ></app-trainer-list>
     `,
 })
 export class TrainerContainerComponent implements OnInit {
@@ -103,10 +103,9 @@ export class TrainerContainerComponent implements OnInit {
             // title: 'Confirmación Personalizada',
             // message: ¿Quieres proceder con esta acción ${}?,
         }).then(() => {
-            this._trainerService.delete$(idTrainer).subscribe((response) => {
-                this.trainers = response;
+            this._trainerService.delete$(idTrainer).subscribe(() => {
+                this.getTrainers();
             });
-            this.getTrainers();
         }).catch(() => {});
     }
 }

@@ -28,6 +28,7 @@ export const END_POINTS = {
       instructor: 'instructor',  // Asegúrate de que este endpoint está correctamente definido en tu API
       producto: 'producto', // Agregar este endpoint
       categoria: 'categoria', // Asegúrate de que también tienes el endpoint para categoría
+      trainer: 'trainer', // Asegúrate de que también tienes el endpoint para categoría
   },
 
   event: {
