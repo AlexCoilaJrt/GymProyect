@@ -26,7 +26,7 @@ import { InstructorService } from '../../../../../providers/services/setup/instr
         <app-instructors-list
             class="w-full"
             [instructors]="instructors"
-            (eventNew)="eventNew($event)"
+            (eventNew)="eventNew()"
             (eventEdit)="eventEdit($event)"
             (eventDelete)="eventDelete($event)"
         ></app-instructors-list>
@@ -58,19 +58,17 @@ export class InstructorContainerComponent implements OnInit {
         );
     }
 
-    public eventNew($event: boolean): void {
-        if ($event) {
-            const instructorForm = this._matDialog.open(InstructorNewComponent);
-            instructorForm.componentInstance.title = 'Nuevo Instructor' || null;
-            instructorForm.afterClosed().subscribe((result: any) => {
-                if (result) {
-                    this.saveInstructor(result);
-                }
-            });
-        }
+    public eventNew(): void {
+        const instructorForm = this._matDialog.open(InstructorNewComponent);
+        instructorForm.componentInstance.title = 'Nuevo Instructor';
+        instructorForm.afterClosed().subscribe((result: any) => {
+            if (result) {
+                this.saveInstructor(result);
+            }
+        });
     }
 
-    saveInstructor(data: Object): void {
+    saveInstructor(data: Instructor): void {
         this._instructorService.add$(data).subscribe((response) => {
             if (response) {
                 this.getInstructors();
@@ -78,31 +76,22 @@ export class InstructorContainerComponent implements OnInit {
         });
     }
 
-    eventEdit(idInstructor: number): void {
-        const listById = this._instructorService
-            .getById$(idInstructor)
-            .subscribe(async (response) => {
-                this.instructor = response || {} as Instructor;
-                this.openModalEdit(this.instructor);
-                listById.unsubscribe();
-            });
-    }
-
-    openModalEdit(data: Instructor) {
-        console.log(data);
-        if (data) {
+    public eventEdit(idInstructor: number): void {
+        this._instructorService.getById$(idInstructor).subscribe((response) => {
+            this.instructor = response || {} as Instructor;
             const instructorForm = this._matDialog.open(InstructorEditComponent);
-            instructorForm.componentInstance.title = `Editar <b>${data.nombre || data.id}</b>`;
-            instructorForm.componentInstance.instructor = data;
+            instructorForm.componentInstance.title = `Editar ${this.instructor.nombre}`;
+            instructorForm.componentInstance.instructor = this.instructor;
             instructorForm.afterClosed().subscribe((result: any) => {
                 if (result) {
-                    this.editInstructor(data.id, result);
+                    this.editInstructor(this.instructor.id, result);
                 }
             });
-        }
+        });
     }
+    
 
-    editInstructor(idInstructor: number, data: Object) {
+    editInstructor(idInstructor: number, data: Instructor): void {
         this._instructorService.update$(idInstructor, data).subscribe((response) => {
             if (response) {
                 this.getInstructors();
@@ -113,7 +102,7 @@ export class InstructorContainerComponent implements OnInit {
     public eventDelete(idInstructor: number) {
         this._confirmDialogService.confirmDelete({
             // title: 'Confirmación Personalizada',
-            // message: `¿Quieres proceder con esta acción ${}?`,
+            // message: ¿Quieres proceder con esta acción ${}?,
         }).then(() => {
             this._instructorService.delete$(idInstructor).subscribe((response) => {
                 this.instructors = response;
