@@ -1,9 +1,13 @@
 import { Routes } from '@angular/router';
-import { CatalogoContainerComponent } from './containers/catalogo-container.component';
+import { ProductoContainerComponent } from './containers/producto-container.component';
+import { CategoriaContainerComponent } from './containers/categoria-container.component';
 
-export default [
+export const catalogoRoutes: Routes = [
     {
         path: '',
-        component: CatalogoContainerComponent,
-    },
-] as Routes;
+        children: [
+            { path: 'productos', component: ProductoContainerComponent },
+            { path: 'categorias', component: CategoriaContainerComponent },
+        ]
+    }
+];

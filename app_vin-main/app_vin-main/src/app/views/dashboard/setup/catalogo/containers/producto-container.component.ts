@@ -1,35 +1,30 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmDialogService } from '../../../../../shared/confirm-dialog/confirm-dialog.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductoService } from '../../../../../providers/services/setup/producto.service';
 import { Producto } from '../models/producto';
 import { ProductoListComponent } from '../components/lists/producto-list.component';
 import { ProductoEditComponent } from '../components/form/producto-edit.component';
-import { ProductoNewComponent } from '../components/form/producto-new.component';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {RouterOutlet} from "@angular/router";
-import {CommonModule} from "@angular/common";
+import { ConfirmDialogService } from '../../../../../shared/confirm-dialog/confirm-dialog.service';
 
 @Component({
     selector: 'app-producto-container',
     standalone: true,
     imports: [
         CommonModule,
-        RouterOutlet,
-        ProductoListComponent,
-        ProductoEditComponent,
-        ProductoNewComponent,
         FormsModule,
         ReactiveFormsModule,
+        ProductoListComponent,
+        ProductoEditComponent,
     ],
     template: `
-        <app-productos-list
-            class="w-full"
+        <app-producto-list
             [productos]="productos"
             (eventNew)="eventNewProducto()"
             (eventEdit)="eventEditProducto($event)"
             (eventDelete)="eventDeleteProducto($event)"
-        ></app-productos-list>
+        ></app-producto-list>
     `,
 })
 export class ProductoContainerComponent implements OnInit {
@@ -39,7 +34,7 @@ export class ProductoContainerComponent implements OnInit {
     constructor(
         private _productoService: ProductoService,
         private _confirmDialogService: ConfirmDialogService,
-        private _matDialog: MatDialog
+        private _matDialog: MatDialog,
     ) {}
 
     ngOnInit() {
@@ -57,8 +52,8 @@ export class ProductoContainerComponent implements OnInit {
         );
     }
 
-    public eventNewProducto(): void {
-        const productoForm = this._matDialog.open(ProductoNewComponent);
+    eventNewProducto(): void {
+        const productoForm = this._matDialog.open(ProductoEditComponent);
         productoForm.componentInstance.title = 'Nuevo Producto';
         productoForm.afterClosed().subscribe((result: any) => {
             if (result) {
@@ -75,10 +70,10 @@ export class ProductoContainerComponent implements OnInit {
         });
     }
 
-    public eventEditProducto(idProducto: number): void {
+    eventEditProducto(idProducto: number): void {
         this._productoService.getById$(idProducto).subscribe((response) => {
             const productoForm = this._matDialog.open(ProductoEditComponent);
-            productoForm.componentInstance.title = 'Editar Producto';
+            productoForm.componentInstance.title = `Editar Producto`;
             productoForm.componentInstance.producto = response;
             productoForm.afterClosed().subscribe((result: any) => {
                 if (result) {
@@ -96,14 +91,11 @@ export class ProductoContainerComponent implements OnInit {
         });
     }
 
-    public eventDeleteProducto(idProducto: number): void {
-        this._confirmDialogService
-            .confirmDelete({})
-            .then(() => {
-                this._productoService.delete$(idProducto).subscribe(() => {
-                    this.getProductos();
-                });
-            })
-            .catch(() => {});
+    eventDeleteProducto(idProducto: number): void {
+        this._confirmDialogService.confirmDelete({}).then(() => {
+            this._productoService.delete$(idProducto).subscribe(() => {
+                this.getProductos();
+            });
+        }).catch(() => {});
     }
 }

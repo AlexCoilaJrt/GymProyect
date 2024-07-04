@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { abcForms } from '../../../../../environments/generals';
 import { Component, OnInit } from '@angular/core';
-
 @Component({
     selector: 'app-setup',
     standalone: true,
@@ -19,12 +18,12 @@ import { Component, OnInit } from '@angular/core';
     `,
     // styleUrl: './setup.component.scss'
 })
-export class CatalogoComponent implements OnInit {
+export class ClientComponent implements OnInit {
     public title: string = '';
     abcForms: any;
     constructor() {}
     ngOnInit() {
-        this.title = 'Instructor';
+        this.title = 'Cliente';
         this.abcForms = abcForms;
     }
 }
