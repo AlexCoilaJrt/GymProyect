@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { CommonModule } from '@angular/common';
-import { Producto } from '../models/producto';
+import { Producto } from '../../models/producto';
 
 @Component({
     selector: 'app-producto-edit',

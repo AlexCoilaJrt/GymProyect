@@ -6,6 +6,6 @@ import { Observable } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class CategoriaService extends EntityDataService<any> {
     constructor(protected override httpClient: HttpClient) {
-        super(httpClient, END_POINTS.setup.instructor); // Verifica que este endpoint existe
+        super(httpClient, END_POINTS.setup.categoria); // Verifica que este endpoint existe
     }
 }

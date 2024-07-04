@@ -8,6 +8,7 @@ import { ProductoService } from '../../../../../providers/services/setup/product
 import { Producto } from '../models/producto';
 import { ProductoListComponent } from '../components/lists/producto-list.component';
 import { ProductoEditComponent } from '../components/form/producto-edit.component';
+import { ProductoNewComponent } from '../components/form/producto-new.component';
 
 @Component({
     selector: 'app-producto-container',
@@ -17,6 +18,7 @@ import { ProductoEditComponent } from '../components/form/producto-edit.componen
         RouterOutlet,
         ProductoListComponent,
         ProductoEditComponent,
+        ProductoNewComponent,
         FormsModule,
         ReactiveFormsModule,
     ],
@@ -56,7 +58,7 @@ export class ProductoContainerComponent implements OnInit {
     }
 
     public eventNewProducto(): void {
-        const productoForm = this._matDialog.open(ProductoEditComponent);
+        const productoForm = this._matDialog.open(ProductoNewComponent);
         productoForm.componentInstance.title = 'Nuevo Producto';
         productoForm.afterClosed().subscribe((result: any) => {
             if (result) {
@@ -95,7 +97,7 @@ export class ProductoContainerComponent implements OnInit {
     }
 
     public eventDeleteProducto(idProducto: number): void {
-        this._confirmDialogService.confirmDelete({}).then(() => {
+        this._confirmDialogService.confirmDelete().then(() => {
             this._productoService.delete$(idProducto).subscribe(() => {
                 this.getProductos();
             });
