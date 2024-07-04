@@ -26,6 +26,8 @@ export const END_POINTS = {
     access:'acceso',
     access_parent:'acceso-padres',
       instructor: 'instructor',  // Asegúrate de que este endpoint está correctamente definido en tu API
+      producto: 'producto', // Agregar este endpoint
+      categoria: 'categoria', // Asegúrate de que también tienes el endpoint para categoría
   },
 
   event: {
