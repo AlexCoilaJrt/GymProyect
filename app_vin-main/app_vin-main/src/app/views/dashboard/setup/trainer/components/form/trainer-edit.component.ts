@@ -57,43 +57,29 @@ import { MatDialogRef } from '@angular/material/dialog';
     `
 })
 export class TrainerEditComponent implements OnInit {
-    trainerForm = new FormGroup({
-        nombre: new FormControl('', [Validators.required]),
-        apellido: new FormControl('', [Validators.required]),
-        especialidad: new FormControl('', [Validators.required]),
-        email: new FormControl('', [Validators.required, Validators.email]),
-        telefono: new FormControl('', [Validators.required]),
-    });
-    @Input() title: string = '';
-    @Input() trainer = new Trainer();
-    abcForms: any;
+    @Input() title: string;
+    @Input() trainer: Trainer;
+    trainerForm: FormGroup;
 
-    constructor(
-        private formBuilder: FormBuilder,
-        private dialogRef: MatDialogRef<TrainerEditComponent>,
-    ) {}
+    constructor(private dialogRef: MatDialogRef<TrainerEditComponent>, private fb: FormBuilder) { }
 
-    ngOnInit() {
-        this.abcForms = abcForms;
-
-        if (this.trainer) {
-            this.trainerForm.patchValue({
-                nombre: this.trainer.nombre,
-                apellido: this.trainer.apellido,
-                especialidad: this.trainer.especialidad,
-                email: this.trainer.email,
-                telefono: this.trainer.telefono,
-            });
-        }
+    ngOnInit(): void {
+        this.trainerForm = this.fb.group({
+            nombre: [this.trainer?.nombre, Validators.required],
+            apellido: [this.trainer?.apellido, Validators.required],
+            especialidad: [this.trainer?.especialidad, Validators.required],
+            email: [this.trainer?.email, [Validators.required, Validators.email]],
+            telefono: [this.trainer?.telefono, Validators.required]
+        });
     }
 
-    public saveForm(): void {
+    saveForm(): void {
         if (this.trainerForm.valid) {
-            this.dialogRef.close(this.trainerForm.value);
+            this.dialogRef.close({ ...this.trainer, ...this.trainerForm.value });
         }
     }
 
-    public cancelForm(): void {
-        this.dialogRef.close(null);
+    cancelForm(): void {
+        this.dialogRef.close();
     }
 }

@@ -16,7 +16,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
 @Component({
-    selector: 'app-clients-new',
+    selector: 'app-client-new',
     standalone: true,
     imports: [
         FormsModule,
@@ -56,8 +56,8 @@ import { MatInputModule } from '@angular/material/input';
                     <input matInput formControlName="edad" />
                 </mat-form-field>
                 <mat-form-field>
-                    <mat-label>Telefono</mat-label>
-                        <input matInput formControlName="telefono" />
+                    <mat-label>Teléfono</mat-label>
+                    <input matInput formControlName="telefono" />
                 </mat-form-field>
                 <mat-form-field>
                     <mat-label>Correo</mat-label>

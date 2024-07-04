@@ -1,18 +1,25 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { abcForms } from '../../../../../../../environments/generals';
-import { Instructor } from '../../models/instructor'; // Asegúrate de que esta importación es correcta
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Instructor } from '../../models/instructor';
 
 @Component({
     selector: 'app-instructor-edit',
     standalone: true,
-    imports: [FormsModule, MatIconModule, MatButtonModule, ReactiveFormsModule, MatSlideToggleModule, MatFormFieldModule, MatInputModule],
+    imports: [
+        FormsModule,
+        MatIconModule,
+        MatButtonModule,
+        ReactiveFormsModule,
+        MatSlideToggleModule,
+        MatFormFieldModule,
+        MatInputModule,
+    ],
     template: `
         <div class="flex flex-col max-w-240 md:min-w-160 max-h-screen -m-6">
             <!-- Header -->
@@ -53,41 +60,32 @@ import { MatDialogRef } from '@angular/material/dialog';
     `
 })
 export class InstructorEditComponent implements OnInit {
-    instructorForm = new FormGroup({
-        nombre: new FormControl('', [Validators.required]),
-        especialidad: new FormControl('', [Validators.required]),
-        edad: new FormControl('', [Validators.required]),
-        telefono: new FormControl('', [Validators.required])
-    });
+    instructorForm: FormGroup;
+
     @Input() title: string = '';
-    @Input() instructor: Instructor; // Aquí aseguramos que 'Instructor' es usado como un tipo
-    abcForms: any;
+    @Input() instructor: Instructor;
 
     constructor(
-        private formBuilder: FormBuilder,
+        private fb: FormBuilder,
         private dialogRef: MatDialogRef<InstructorEditComponent>,
-    ) {}
+    ) { }
 
     ngOnInit() {
-        this.abcForms = abcForms;
-
-        if (this.instructor) {
-            this.instructorForm.patchValue({
-                nombre: this.instructor.nombre,
-                especialidad: this.instructor.especialidad,
-                edad: this.instructor.edad,
-                telefono: this.instructor.telefono
-            });
-        }
+        this.instructorForm = this.fb.group({
+            nombre: [this.instructor?.nombre, Validators.required],
+            especialidad: [this.instructor?.especialidad, Validators.required],
+            edad: [this.instructor?.edad, Validators.required],
+            telefono: [this.instructor?.telefono, Validators.required]
+        });
     }
 
     public saveForm(): void {
         if (this.instructorForm.valid) {
-            this.dialogRef.close(this.instructorForm.value);
+            this.dialogRef.close({ ...this.instructor, ...this.instructorForm.value });
         }
     }
 
     public cancelForm(): void {
-        this.dialogRef.close(null);
+        this.dialogRef.close();
     }
 }
