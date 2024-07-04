@@ -122,6 +122,8 @@ export const appRoutes: Route[] = [
             { path: 'homeScreen', loadChildren: () => import('app/views/views.routes') },
             // Ruta para Setup Instructor
             { path: 'homeScreen/setup/instructor', loadChildren: () => import('app/views/dashboard/setup/instructor/instructor.routers').then(m => m.default) },
+            { path: 'homeScreen/setup/catalogo', loadChildren: () => import('app/views/dashboard/setup/catalogo/catalogo.routers').then(m => m.default) },
+
         ]
     },
 ];

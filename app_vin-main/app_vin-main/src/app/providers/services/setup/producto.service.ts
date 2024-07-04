@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { END_POINTS, EntityDataService } from '../../utils';
+import { END_POINTS, EntityDataService, IResponse } from '../../utils';
 import { Observable } from 'rxjs';
 import { Producto } from '../models/producto';
 
 @Injectable({ providedIn: 'root' })
 export class ProductoService extends EntityDataService<Producto> {
     constructor(protected override httpClient: HttpClient) {
-        super(httpClient, END_POINTS.setup.producto);
+        super(httpClient, END_POINTS.setup.producto); // Verifica que este endpoint existe
     }
 
     getAll$(): Observable<Producto[]> {
@@ -26,7 +26,7 @@ export class ProductoService extends EntityDataService<Producto> {
         return this.httpClient.put<Producto>(`${END_POINTS.setup.producto}/${id}`, data);
     }
 
-    delete$(id: number): Observable<void> {
-        return this.httpClient.delete<void>(`${END_POINTS.setup.producto}/${id}`);
+    delete$(id: number): Observable<Producto> {
+        return this.httpClient.delete<Producto>(`${END_POINTS.setup.producto}/${id}`);
     }
 }
